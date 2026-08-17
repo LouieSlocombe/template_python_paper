@@ -1,45 +1,102 @@
 [build-system]
-requires = ["setuptools>=61", "wheel"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "template_python"
-version = "0.0.0"
-description = "Template"
-readme = { file = "README.md", content-type = "text/markdown" }
+name = "template-python"
+version = "0.1.0"
+description = "A modern, reproducible Python project template for research and papers."
+readme = "README.md"
 requires-python = ">=3.12"
-license = { text = "MIT" }
-
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
   { name = "Louie Slocombe", email = "louies@hotmail.co.uk" },
 ]
-
-dependencies = [
-  "numpy",
-]
-
+keywords = ["python", "reproducibility", "research", "template"]
 classifiers = [
-  "Programming Language :: Python :: 3",
-  "License :: OSI Approved :: MIT License",
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
   "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering",
+  "Typing :: Typed",
+]
+dependencies = [
+  "numpy>=1.26",
 ]
 
-[project.optional-dependencies]
-dev = [
-  "pytest",
-  "pytest-cov",
+[dependency-groups]
+analysis = [
+  "ipykernel>=6.29",
+  "jupyterlab>=4.2",
+  "matplotlib>=3.8",
+  "pandas>=2.2",
+  "scipy>=1.12",
 ]
+build = [
+  "build>=1.2",
+  "twine>=6.0",
+]
+quality = [
+  "mypy>=1.13",
+  "pre-commit>=4.0",
+  "ruff>=0.16",
+]
+test = [
+  "pytest>=8.3",
+  "pytest-cov>=6.0",
+]
+dev = [
+  { include-group = "build" },
+  { include-group = "quality" },
+  { include-group = "test" },
+]
+
+[project.scripts]
+template-python = "template_python.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/LouieSlocombe/template_python_paper"
+Issues = "https://github.com/LouieSlocombe/template_python_paper/issues"
 Repository = "https://github.com/LouieSlocombe/template_python_paper"
-
-[tool.setuptools]
-include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["template_python", "template_python.*"]
+include = ["template_python*"]
 
 [tool.setuptools.package-data]
-"template_python" = ["data/*"]
+template_python = ["py.typed"]
+
+[tool.pytest.ini_options]
+addopts = ["--strict-config", "--strict-markers", "-ra"]
+testpaths = ["tests"]
+xfail_strict = true
+
+[tool.coverage.run]
+branch = true
+source = ["template_python"]
+
+[tool.coverage.report]
+fail_under = 95
+show_missing = true
+skip_covered = true
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+
+[tool.ruff]
+line-length = 88
+src = [".", "tests"]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["B", "E4", "E7", "E9", "F", "I", "NPY", "RUF", "SIM", "UP"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["template_python"]
