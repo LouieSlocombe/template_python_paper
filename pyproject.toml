@@ -43,7 +43,7 @@ build = [
 ]
 quality = [
   "mypy>=1.13",
-  "pre-commit>=4.0",
+  "pre-commit>=4.6.2",
   "ruff>=0.16",
 ]
 test = [
