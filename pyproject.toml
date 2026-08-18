@@ -42,7 +42,7 @@ build = [
   "twine>=6.0",
 ]
 quality = [
-  "mypy>=1.13",
+  "mypy>=2.3.1",
   "pre-commit>=4.6.2",
   "ruff>=0.16",
 ]
