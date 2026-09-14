@@ -38,7 +38,7 @@ analysis = [
   "scipy>=1.12",
 ]
 build = [
-  "build>=1.5.0",
+  "build>=1.6.1",
   "twine>=6.0",
 ]
 quality = [
