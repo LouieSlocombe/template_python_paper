@@ -32,7 +32,7 @@ dependencies = [
 [dependency-groups]
 analysis = [
   "ipykernel>=7.3.0",
-  "jupyterlab>=4.6.3",
+  "jupyterlab>=4.6.4",
   "matplotlib>=3.11.2",
   "pandas>=3.0.6",
   "scipy>=1.18.1",
@@ -44,7 +44,7 @@ build = [
 quality = [
   "mypy>=2.3.1",
   "pre-commit>=4.6.2",
-  "ruff>=0.16.8",
+  "ruff>=0.16.9",
 ]
 test = [
   "pytest>=9.1.1",
