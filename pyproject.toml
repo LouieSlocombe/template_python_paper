@@ -32,7 +32,7 @@ dependencies = [
 [dependency-groups]
 analysis = [
   "ipykernel>=7.3.0",
-  "jupyterlab>=4.6.3",
+  "jupyterlab>=4.6.4",
   "matplotlib>=3.11.1",
   "pandas>=3.0.6",
   "scipy>=1.18.1",
