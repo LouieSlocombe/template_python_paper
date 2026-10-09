@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=84.0.0"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.12.24,<0.13"]
+build-backend = "uv_build"
 
 [project]
 name = "template-python"
@@ -31,7 +31,7 @@ dependencies = [
 
 [dependency-groups]
 analysis = [
-  "ipykernel>=7.3.0",
+  "ipykernel>=7.4.0",
   "jupyterlab>=4.6.4",
   "matplotlib>=3.11.2",
   "pandas>=3.0.6",
@@ -42,9 +42,9 @@ build = [
   "twine>=7.0.0",
 ]
 quality = [
-  "mypy>=2.3.1",
-  "pre-commit>=4.6.2",
-  "ruff>=0.16.9",
+  "mypy>=2.4.0",
+  "prek>=0.5.5",
+  "ruff>=0.16.10",
 ]
 test = [
   "pytest>=9.1.1",
@@ -64,39 +64,81 @@ Homepage = "https://github.com/LouieSlocombe/template_python_paper"
 Issues = "https://github.com/LouieSlocombe/template_python_paper/issues"
 Repository = "https://github.com/LouieSlocombe/template_python_paper"
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["template_python*"]
-
-[tool.setuptools.package-data]
-template_python = ["py.typed"]
-
-[tool.pytest.ini_options]
-addopts = ["--strict-config", "--strict-markers", "-ra"]
+[tool.pytest]
+addopts = ["--import-mode=importlib", "-ra"]
+minversion = "9.0"
+strict = true
 testpaths = ["tests"]
-xfail_strict = true
 
 [tool.coverage.run]
 branch = true
 source = ["template_python"]
 
 [tool.coverage.report]
+exclude_also = [
+  "if TYPE_CHECKING:",
+  "if __name__ == .__main__.:",
+]
 fail_under = 95
 show_missing = true
 skip_covered = true
 
 [tool.mypy]
+enable_error_code = [
+  "deprecated",
+  "exhaustive-match",
+  "ignore-without-code",
+  "possibly-undefined",
+  "redundant-expr",
+  "truthy-bool",
+  "truthy-iterable",
+]
+files = ["src", "tests"]
 python_version = "3.12"
 strict = true
 warn_unreachable = true
 
-[tool.ruff]
-line-length = 88
-src = [".", "tests"]
-target-version = "py312"
+[tool.ruff.format]
+docstring-code-format = true
 
 [tool.ruff.lint]
-select = ["B", "E4", "E7", "E9", "F", "I", "NPY", "RUF", "SIM", "UP"]
+select = [
+  "A",    # flake8-builtins
+  "ARG",  # flake8-unused-arguments
+  "B",    # flake8-bugbear
+  "BLE",  # flake8-blind-except
+  "C4",   # flake8-comprehensions
+  "D",    # pydocstyle
+  "DTZ",  # flake8-datetimez
+  "E",    # pycodestyle errors
+  "EM",   # flake8-errmsg
+  "F",    # Pyflakes
+  "FURB", # refurb
+  "I",    # isort
+  "ICN",  # flake8-import-conventions
+  "ISC",  # flake8-implicit-str-concat
+  "LOG",  # flake8-logging
+  "N",    # pep8-naming
+  "NPY",  # NumPy-specific rules
+  "PERF", # Perflint
+  "PGH",  # pygrep-hooks
+  "PIE",  # flake8-pie
+  "PL",   # Pylint
+  "PT",   # flake8-pytest-style
+  "PTH",  # flake8-use-pathlib
+  "RET",  # flake8-return
+  "RSE",  # flake8-raise
+  "RUF",  # Ruff-specific rules
+  "S",    # flake8-bandit
+  "SIM",  # flake8-simplify
+  "TC",   # flake8-type-checking
+  "UP",   # pyupgrade
+  "W",    # pycodestyle warnings
+]
 
-[tool.ruff.lint.isort]
-known-first-party = ["template_python"]
+[tool.ruff.lint.per-file-ignores]
+"analysis/**" = ["D"]
+"tests/**" = ["D", "PLR2004", "S101"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
