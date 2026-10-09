@@ -9,34 +9,37 @@ With `uv`:
 
 ```bash
 uv sync --group analysis
-uv run pre-commit install
+uv run prek install
 ```
 
-With standard Python tooling:
+With standard Python tooling (`pip` 25.1 or newer):
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
-python -m pip install --editable .
-python -m pip install --group dev --group analysis
-pre-commit install
+python -m pip install --editable . --group dev --group analysis
+prek install
 ```
+
+The hooks run Ruff, strip notebook outputs, block large files and private
+keys, keep `uv.lock` in sync with `pyproject.toml`, and audit the CI workflow.
+`pre-commit` reads the same `.pre-commit-config.yaml` if you prefer it.
 
 ## Make a change
 
 1. Add or update a test that describes the intended behaviour.
-2. Put reusable logic under `template_python/`, not in a notebook.
-3. Update user-facing documentation and provenance notes where relevant.
-4. Run the full local check suite:
+2. Put reusable logic under `src/template_python/`, not in a notebook.
+3. Change dependencies with `uv add` or `uv remove` (or edit `pyproject.toml`
+   and run `uv lock`), and commit the updated `uv.lock`.
+4. Update user-facing documentation and provenance notes where relevant.
+5. Run the full local check suite:
 
    ```bash
-   ruff check .
-   ruff format --check .
-   mypy template_python tests
-   python -m pytest --cov
-   python -m build
-   python -m twine check --strict dist/*
+   uv run prek run --all-files
+   uv run mypy
+   uv run pytest --cov
+   uv build
    ```
 
 Do not commit generated distributions, local environments, credentials, large

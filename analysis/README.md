@@ -1,7 +1,7 @@
 # Analysis workflow
 
 Keep notebooks and scripts that produce research results in this directory.
-Reusable or testable logic belongs in `template_python/`; analysis files
+Reusable or testable logic belongs in `src/template_python/`; analysis files
 should orchestrate that logic and make the provenance of outputs clear.
 
 Suggested naming follows execution order:
@@ -23,5 +23,5 @@ regenerate every table, figure, and reported result. Each analysis should:
 - run from the repository root in a freshly created environment.
 
 Prefer scripts for the final reproducible pipeline. Notebooks are useful for
-exploration, but clear their incidental output and document their execution
-order before publication.
+exploration; the `nbstripout` Git hook removes their outputs and execution
+counts on commit, so document their execution order before publication.

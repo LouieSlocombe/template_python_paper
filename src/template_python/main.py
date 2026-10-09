@@ -1,7 +1,12 @@
 """Small, typed example functions to replace with project-specific logic."""
 
+from typing import Final
+
 import numpy as np
 from numpy.typing import NDArray
+
+MIN_POINTS: Final = 2
+"""Smallest number of samples accepted by :func:`line`."""
 
 
 def greeting(name: str = "World") -> str:
@@ -33,8 +38,8 @@ def line(num_points: int = 100) -> NDArray[np.float64]:
     Returns:
         A one-dimensional, double-precision NumPy array.
     """
-    if num_points < 2:
-        message = "num_points must be at least 2"
+    if num_points < MIN_POINTS:
+        message = f"num_points must be at least {MIN_POINTS}"
         raise ValueError(message)
 
     return np.linspace(0.0, 1.0, num=num_points, dtype=np.float64)

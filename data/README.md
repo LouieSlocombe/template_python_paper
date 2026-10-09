@@ -17,7 +17,7 @@ data/
 └── processed/  # analysis-ready datasets
 ```
 
-The three directories above are ignored by Git by default. Use an appropriate
-data repository, object store, DVC, or Git LFS when collaborators need access
-to large files. Never commit credentials, confidential records, or data that
+The three directories above are ignored by Git by default, and a Git hook
+rejects any other file larger than 1 MB. Use an appropriate data repository,
+object store, DVC, or Git LFS when collaborators need access to large files. Never commit credentials, confidential records, or data that
 cannot legally be redistributed.

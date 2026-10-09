@@ -10,8 +10,7 @@ Run every command from the repository root:
 conda env create --file build_tools/environment.yml
 conda activate template-python-paper
 python -m pip install --upgrade pip
-python -m pip install --editable .
-python -m pip install --group dev --group analysis
+python -m pip install --editable . --group dev --group analysis
 python -m pytest --cov
 ```
 
