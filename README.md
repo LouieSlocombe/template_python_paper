@@ -27,8 +27,7 @@ useful quality baseline out of the box.
 - Git hooks (run with [`prek`](https://prek.j178.dev/) or `pre-commit`) that
   strip notebook outputs, block large files and private keys, keep the lockfile
   in sync, and audit the CI workflow for security problems;
-- continuous integration on Python 3.12–3.14 on Linux,
-  plus an early-warning job for the next Python release;
+- continuous integration on Python 3.14 on Linux;
 - hardened GitHub Actions (SHA-pinned, least-privilege tokens) and grouped
   weekly Dependabot updates with a cooldown period;
 - guidance for reproducible analyses and responsible data handling;
