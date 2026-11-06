@@ -170,3 +170,7 @@ cython_debug/
 /data/interim/
 /data/processed/
 /artifacts/
+
+# Local coding-agent instructions, not part of the repository
+CLAUDE.md
+AGENTS.md
