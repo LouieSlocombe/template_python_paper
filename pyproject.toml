@@ -1,5 +1,5 @@
 [build-system]
-requires = ["uv_build>=0.13.6,<0.14"]
+requires = ["uv_build>=0.13.7,<0.14"]
 build-backend = "uv_build"
 
 [project]
@@ -32,9 +32,9 @@ dependencies = [
 [dependency-groups]
 analysis = [
   "ipykernel>=7.4.0",
-  "jupyterlab>=4.6.5",
+  "jupyterlab>=4.6.6",
   "matplotlib>=3.11.2",
-  "pandas>=3.1.0",
+  "pandas>=3.1.1",
   "scipy>=1.18.1",
 ]
 build = [
@@ -43,8 +43,8 @@ build = [
 ]
 quality = [
   "mypy>=2.4.1",
-  "prek>=0.5.9",
-  "ruff>=0.17.3",
+  "prek>=0.5.10",
+  "ruff>=0.17.4",
 ]
 test = [
   "pytest>=9.2.0",
