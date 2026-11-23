@@ -1,5 +1,5 @@
 [build-system]
-requires = ["uv_build>=0.13.6,<0.14"]
+requires = ["uv_build>=0.13.8,<0.14"]
 build-backend = "uv_build"
 
 [project]
@@ -26,15 +26,15 @@ classifiers = [
   "Typing :: Typed",
 ]
 dependencies = [
-  "numpy>=2.5.4",
+  "numpy>=2.5.5",
 ]
 
 [dependency-groups]
 analysis = [
   "ipykernel>=7.4.0",
-  "jupyterlab>=4.6.5",
+  "jupyterlab>=4.6.6",
   "matplotlib>=3.11.2",
-  "pandas>=3.1.0",
+  "pandas>=3.1.1",
   "scipy>=1.18.1",
 ]
 build = [
@@ -43,8 +43,8 @@ build = [
 ]
 quality = [
   "mypy>=2.4.1",
-  "prek>=0.5.9",
-  "ruff>=0.17.3",
+  "prek>=0.5.11",
+  "ruff>=0.17.5",
 ]
 test = [
   "pytest>=9.2.0",
